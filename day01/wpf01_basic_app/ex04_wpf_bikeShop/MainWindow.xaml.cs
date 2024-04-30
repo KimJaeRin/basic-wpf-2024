@@ -25,7 +25,7 @@ namespace ex04_wpf_bikeShop
         {
             // 코드 비하인드에서 Source 속석에 피이지를 넣을때는 UriKind.RelativeOrAbsolute 무조건 추가
             // 
-            MainFrame.Source = new Uri("/ContactPage.Xaml", UriKind.RelativeOrAbsolute);
+            MainFrame.Source = new Uri("/MenuPage.Xaml", UriKind.RelativeOrAbsolute);
         }
     }
 }

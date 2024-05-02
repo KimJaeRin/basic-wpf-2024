@@ -40,9 +40,43 @@ IoT 개발자 WPF 학습 리포지토리
         - APP.xaml Resourced - 애플리케이션 전체에 적용되는 디자인
         - 리소스사전 - 공유할 디자인 내용이 많을때 파일로 따로지정
 
-- WPF 기본학습
-    - 데이터바인딩 마무리
-    - 디자인 리소스
-    - 
+- WPF MVVM
+    - MVC(Model View Controller 패턴)
+        - 웹개발(Spring, ASP.NET MVC, dJango, etc...) 현재도 사용
+        - model : Data입출력 처리를 담당
+        - View : 디스플레이 화면담당
+        - Controller : View를 제어, Model 처리 중앙에 관장
 
+    - MVVM(Model View ViewModel)
+        - Model : Data 입출력(DB side)
+        - View : 화면, 순수 xaml로만 구성
+        - ViewModel : 뷰에대한 메서드, 액션, INotifyPropertyChanged를 구현
 
+        ![MVVM패턴](https://github.com/KimJaeRin/basic-wpf-2024/blob/main/images/wpf001.png)
+    
+    - 권장 구현방법
+        - ViewModel 생성, 알림속성 구현
+        - View에 ViewModel을 데이터바인딩
+        - Model DB작업 독립적으로구현
+
+    - MVVM 구현 도와주는 프레임워크
+        0. ~~Mvvmlight.Toolkit~~ : 3rd Party 개발, 2009년부터 시작 2014년 이후 더 이상 개발이나 지원이 없음
+        1. **Caliburn.Micro** : 3rd Party 개발, MVVM이 아주 간단하고 강력, 중소형 프로젝트에 적합 But 디버깅이 어려움
+        2. AvaloniaUI : 3rd Party 개발, 크로스플랫폼 디자인이 좋음
+        3. Prism : Microsoft 개발, 상당히 어려움.
+
+- Caliburn.Micro
+    1. 프로젝트 생성 후 MainWindow.xaml 삭제
+    2. Models, Views, ViewModels 폴더(네임스페이스) 생성
+    3. 종속성 NuGet패기지 Caliburn.Micro 설치
+    4. 루트폴더에 Bootstrapper.cs 클래스 생성
+    5. App.xaml에서 StartupUri 삭제
+    6. App.xaml에 Bootstrapper 클래스를 리소스사전에 등록
+    7. App.xaml.cs에 App()생성자 추가
+    8. ViewModels 폴더에 MainViewModel.cs 클래스 생성
+    9. Bootstrapper.cs에 OnStartup()의 내용을 변경
+    10. Views 폴더에 MainView.xaml 생성
+
+    - 작업(3명) 분리
+        - DB개발자 : DBMS테이블 생성, Models에 클래스 작업
+        - Xaml 디자이너 - Views 폴더에 있는 xaml폴더에 디자인 작업

@@ -244,6 +244,7 @@ namespace ex07_EmployeeMngApp.ViewModels
                     MessageBox.Show("삭제실패");
                 }
                 GetEmployees();
+                NewEmployee();
             }
         }
         public void NewEmployee()

@@ -1,12 +1,12 @@
 ﻿<mah:MetroWindow 
-    x:Class="ex11_Gimhae_FineDust.MainWindow"
+    x:Class="ex12_wpf_toyproject.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:iconPack="http://metro.mahapps.com/winfx/xaml/iconpacks"
-    xmlns:local="clr-namespace:ex11_Gimhae_FineDust"
+    xmlns:local="clr-namespace:ex12_wpf_toyproject"
     mc:Ignorable="d"
     Title="Gimhae Finedust Check" Height="450" Width="800" MinHeight="300" MinWidth="600">
     <!--Loaded="MetroWindow_Loaded">-->
@@ -50,12 +50,12 @@
         <!-- 중간 데이터그리드영역-->
         <DataGrid x:Name="GrdResult" Grid.Row="1" Margin="10"
                   IsReadOnly="True" ItemsSource="{Binding}"
-                  Style="{StaticResource MahApps.Styles.DataGrid.Azure}" />
-        <!--MouseDoubleClick="GrdResult_MouseDoubleClick" />-->
+                  Style="{StaticResource MahApps.Styles.DataGrid.Azure}"
+                  MouseDoubleClick="GrdResult_MouseDoubleClick" />
 
         <!-- 맨하단 상태바 위치 -->
         <StatusBar Grid.Row="2">
-            <StatusBarItem Content="김해시 미세먼지앱" />
+            <StatusBarItem Content="전기차 충전소 현황" />
             <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" />
             <StatusBarItem x:Name="StsResult" />
         </StatusBar>

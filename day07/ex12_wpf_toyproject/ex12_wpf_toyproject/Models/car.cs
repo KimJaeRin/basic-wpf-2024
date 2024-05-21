@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ex11_Gimhae_FineDust.Models
+namespace ex12_wpf_toyproject.Models
 {
     public class car
     {
-        public string Addr { get; set; }  // 추가생성, DB에 넣을때 사용할 값
-        public int ChargeTp { get; set; }  // 디바이스아이디
-        public int CpId { get; set; }  // 디바이스 이름
-        public string CpNm { get; set; } // 디바이스 위치주소
-        public int CpStat { get; set; } //경도
-        public int CpTp { get; set; }  // 위도
-        public int CsId { get; set; }  // 디바이스 온 여부
-        public string CsNm { get; set; } // PM 10mm 미세먼지 측정값
-        public double Lat { get; set; } // PM 2.5mm 초미세먼지 측정값
-        public double LongI { get; set; } // 상태
-        public DateTime StatUpdateDatetime { get; set; }
+        public string addr { get; set; }  // 주소
+        public int chargeTp { get; set; }  // charge type
+        public int cpId { get; set; }  // 충전기 아이디
+        public string cpNm { get; set; } // 충전기 이름
+        public int cpStat { get; set; } //스
+        //public int cpTp { get; set; }  // 
+        //public int csId { get; set; }  // 아이디
+        public string csNm { get; set; } // 위치
+        public double lat { get; set; } // 위도
+        public double longi { get; set; } // 경도
+        //public DateTime statUpdatedatetime { get; set; }
     }
 }   // 측정일시
 

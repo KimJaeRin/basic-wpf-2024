@@ -11,21 +11,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ex11_Gimhae_FineDust.Models;
+using ex12_wpf_toyproject.Models;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Newtonsoft.Json.Linq;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using ex11_Gimhae_FineDust;
 
-namespace ex11_Gimhae_FineDust
+namespace ex12_wpf_toyproject
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
-        bool isChecked = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -59,8 +59,8 @@ namespace ex11_Gimhae_FineDust
         // 실시간조회 버튼 클릭
         private async void BtnReqRealtime_Click(object sender, RoutedEventArgs e)
         {
-            string data_apiKey = "P21A+gGUvPa0+LjBfqp8qX7x7lzDqYvtvSnXbVxv/idtWmTcL2Udw+1ph1xyRhpevN+KC+CzPWpXhK/CSJOSbQ==";
-            string openApiUri = $"http://openapi.kepco.co.kr/service/EvInfoServiceV2/getEvSearchList?serviceKey={data_apiKey}&pageNo=1&numOfRows=10&addr=전라";
+            string data_apiKey = "P21A%2BgGUvPa0%2BLjBfqp8qX7x7lzDqYvtvSnXbVxv%2FidtWmTcL2Udw%2B1ph1xyRhpevN%2BKC%2BCzPWpXhK%2FCSJOSbQ%3D%3D";
+            string openApiUri = $"https://api.odcloud.kr/api/EvInfoServiceV2/v1/getEvSearchList?page=1&perPage=10&serviceKey={data_apiKey}";
             string result = string.Empty;
 
             // WebRequest, WebResponse 객체
@@ -84,34 +84,33 @@ namespace ex11_Gimhae_FineDust
             }
 
             var jsonResult = JObject.Parse(result);
-            var status = Convert.ToInt32(jsonResult["status"]);
 
-            if (status == 200)
-            {
+            
                 var data = jsonResult["data"];
                 var jsonArray = data as JArray; // json자체에서 []안에 들어간 배열데이터만 JArray 변환가능
 
-                var dustSensors = new List<car>();
+                var car = new List<car>();
                 foreach (var item in jsonArray)
                 {
-                    dustSensors.Add(new car()
+                    car.Add(new car()
                     {
-                        Addr = Convert.ToString(item["addr"]),
-                        ChargeTp = Convert.ToInt32(item["chargetp"]),
-                        CpId = Convert.ToInt32(item["cpid"]),
-                        CpNm = Convert.ToString(item["cpnm"]),
-                        CpStat = Convert.ToInt32(item["xpstat"]),
-                        CpTp = Convert.ToInt32(item["cptp"]),
-                        CsId = Convert.ToInt32(item["csid"]),
-                        CsNm = Convert.ToString(item["csnm"]),
-                        Lat = Convert.ToDouble(item["lat"]),
-                        StatUpdateDatetime = Convert.ToDateTime(item["timestamp"]),
+                        addr = Convert.ToString(item["addr"]),
+                        chargeTp = Convert.ToInt32(item["chargeTp"]),
+                        cpId = Convert.ToInt32(item["cpId"]),
+                        cpNm = Convert.ToString(item["cpNm"]),
+                        cpStat = Convert.ToInt32(item["cpStat"]),
+                        //cpTp = Convert.ToInt32(item["cpTp"]),
+                        //csId = Convert.ToInt32(item["csId"]),
+                        csNm = Convert.ToString(item["csNm"]),
+                        lat = Convert.ToDouble(item["lat"]),
+                        longi = Convert.ToDouble(item["longi"]),
+                        //statUpdatedatetime = Convert.ToDateTime(item["statUpdatedatetime"]),
                     });
                 }
 
-                this.DataContext = dustSensors;
-                StsResult.Content = $"OpenAPI {dustSensors.Count}건 조회완료!";
-            }
+                this.DataContext = car;
+                StsResult.Content = $"OpenAPI {car.Count}건 조회완료!";
+            
         }
 
         //private async void BtnSaveData_Click(object sender, RoutedEventArgs e)
@@ -163,7 +162,7 @@ namespace ex11_Gimhae_FineDust
         //    InitComboDateFromDB();
         //}
 
-        // 수업 이후 추가내용. 필요시 구현할 것
+        //수업 이후 추가내용.필요시 구현할 것
         //private void CboReqDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         //{
         //    if (CboReqDate.SelectedValue != null)
@@ -210,14 +209,14 @@ namespace ex11_Gimhae_FineDust
         //    }
         //}
 
-        //private void GrdResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    var curItem = GrdResult.SelectedItem as car;
+        private void GrdResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+      {
+         var curItem = GrdResult.SelectedItem as car;
 
-        //    var mapWindow = new MapWindow(curItem.Coordy, curItem.Coordx);
-        //    mapWindow.Owner = this;
-        //    mapWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-        //    mapWindow.ShowDialog();
-        //}
+         var mapWindow = new MapWindow(curItem.lat, curItem.longi);
+         mapWindow.Owner = this;
+         mapWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+         mapWindow.ShowDialog();
+       }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:cefSharp="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         xmlns:local="clr-namespace:ex11_Gimhae_FineDust"
         mc:Ignorable="d"
-        Title="MapWindow" Height="350" Width="600"> 
+        Title="MapWindow" Height="600" Width="900"> 
     <Grid Margin="20">
         <cefSharp:ChromiumWebBrowser x:Name="BrsLoc" Address="https://map.google.com"/>
     </Grid>

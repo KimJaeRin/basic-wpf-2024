@@ -60,7 +60,7 @@ namespace ex12_wpf_toyproject
         private async void BtnReqRealtime_Click(object sender, RoutedEventArgs e)
         {
             string data_apiKey = "P21A%2BgGUvPa0%2BLjBfqp8qX7x7lzDqYvtvSnXbVxv%2FidtWmTcL2Udw%2B1ph1xyRhpevN%2BKC%2BCzPWpXhK%2FCSJOSbQ%3D%3D";
-            string openApiUri = $"https://api.odcloud.kr/api/EvInfoServiceV2/v1/getEvSearchList?page=1&perPage=10&serviceKey={data_apiKey}";
+            string openApiUri = $"https://api.odcloud.kr/api/EvInfoServiceV2/v1/getEvSearchList?page=1&perPage=100&serviceKey={data_apiKey}";
             string result = string.Empty;
 
             // WebRequest, WebResponse 객체
@@ -94,16 +94,16 @@ namespace ex12_wpf_toyproject
                 {
                     car.Add(new car()
                     {
-                        addr = Convert.ToString(item["addr"]),
-                        chargeTp = Convert.ToInt32(item["chargeTp"]),
-                        cpId = Convert.ToInt32(item["cpId"]),
-                        cpNm = Convert.ToString(item["cpNm"]),
+                        주소 = Convert.ToString(item["addr"]) ,
+                        충전기타입 = Convert.ToInt32(item["chargeTp"]),
+                        충전기아이디 = Convert.ToInt32(item["cpId"]),
+                        충전기이름 = Convert.ToString(item["cpNm"]),
                         cpStat = Convert.ToInt32(item["cpStat"]),
                         //cpTp = Convert.ToInt32(item["cpTp"]),
                         //csId = Convert.ToInt32(item["csId"]),
-                        csNm = Convert.ToString(item["csNm"]),
-                        lat = Convert.ToDouble(item["lat"]),
-                        longi = Convert.ToDouble(item["longi"]),
+                        위치 = Convert.ToString(item["csNm"]),
+                        위도 = Convert.ToDouble(item["lat"]),
+                        경도 = Convert.ToDouble(item["longi"]),
                         //statUpdatedatetime = Convert.ToDateTime(item["statUpdatedatetime"]),
                     });
                 }
@@ -213,7 +213,7 @@ namespace ex12_wpf_toyproject
       {
          var curItem = GrdResult.SelectedItem as car;
 
-         var mapWindow = new MapWindow(curItem.lat, curItem.longi);
+         var mapWindow = new MapWindow(curItem.위도, curItem.경도);
          mapWindow.Owner = this;
          mapWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
          mapWindow.ShowDialog();

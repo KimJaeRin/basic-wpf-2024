@@ -8,16 +8,16 @@ namespace ex12_wpf_toyproject.Models
 {
     public class car
     {
-        public string addr { get; set; }  // 주소
-        public int chargeTp { get; set; }  // charge type
-        public int cpId { get; set; }  // 충전기 아이디
-        public string cpNm { get; set; } // 충전기 이름
+        public string 주소 { get; set; }  // 주소
+        public int 충전기타입 { get; set; }  // charge type
+        public int 충전기아이디 { get; set; }  // 충전기 아이디
+        public string 충전기이름 { get; set; } // 충전기 이름
         public int cpStat { get; set; } //스
         //public int cpTp { get; set; }  // 
         //public int csId { get; set; }  // 아이디
-        public string csNm { get; set; } // 위치
-        public double lat { get; set; } // 위도
-        public double longi { get; set; } // 경도
+        public string 위치 { get; set; } // 위치
+        public double 위도 { get; set; } // 위도
+        public double 경도 { get; set; } // 경도
         //public DateTime statUpdatedatetime { get; set; }
     }
 }   // 측정일시

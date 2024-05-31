@@ -33,7 +33,7 @@
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="BtnReqRealtime" Content="실시간조회" Width="100" Margin="5,10" 
-                        Style="{StaticResource MahApps.Styles.Button.Square.Accent}"
+                        Style="{StaticResource MahApps.Styles.Button.Square.Highlight}"
                         Click="BtnReqRealtime_Click" />
                 <Button x:Name="BtnSaveData" Content="저장" Width="80" Margin="5,10"
                         Style="{StaticResource MahApps.Styles.Button.Square.Highlight}"/>
